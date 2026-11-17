@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NovaScan — Educational Antivirus Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="grid-bg"></div>
+
+  <div class="app">
+
+    <header class="header">
+      <div class="logo">
+        <div class="logo-shield">
+          <svg viewBox="0 0 40 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L4 9V22C4 31.4 11.2 40.2 20 43C28.8 40.2 36 31.4 36 22V9L20 2Z" fill="url(#shieldGrad)" stroke="url(#shieldStroke)" stroke-width="1.5"/>
+            <path d="M13 22L18 27L28 17" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="shieldGrad" x1="20" y1="2" x2="20" y2="43" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#1dd3f8"/>
+                <stop offset="100%" stop-color="#0a7baf"/>
+              </linearGradient>
+              <linearGradient id="shieldStroke" x1="4" y1="2" x2="36" y2="43" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#60ecff"/>
+                <stop offset="100%" stop-color="#1a8bbf"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">NovaScan</span>
+          <span class="logo-tag">EDUCATIONAL DEMO</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="home">Home</button>
+        <button class="nav-btn" data-tab="results">Results</button>
+        <button class="nav-btn" data-tab="history">History</button>
+        <button class="nav-btn" data-tab="threatlog">Threat Log</button>
+      </nav>
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Demo Mode</span>
+      </div>
+    </header>
+
+    <div class="demo-banner">
+      Educational project. <strong>Scan Now</strong> is a simulation with made-up files.
+      <strong>File upload</strong> uses real hash and pattern checks. Not a replacement for real antivirus.
+    </div>
+
+    <main class="main">
+
+      <div class="tab-panel active" id="tab-home">
+        <div class="stats-row" id="stats-row">
+          <div class="stat-box">
+            <div class="stat-val" id="stat-scans">0</div>
+            <div class="stat-lbl">Total Scans</div>
+          </div>
+          <div class="stat-box stat-danger">
+            <div class="stat-val" id="stat-threats">0</div>
+            <div class="stat-lbl">Threats Found</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="stat-files">0</div>
+            <div class="stat-lbl">Files Scanned</div>
+          </div>
+          <div class="stat-box stat-safe">
+            <div class="stat-val">DEMO</div>
+            <div class="stat-lbl">Mode</div>
+          </div>
+        </div>
+
+        <div class="scan-arena">
+          <div class="arena-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+          </div>
+
+          <div class="particles" id="particles"></div>
+
+          <div class="scan-btn-wrap">
+            <button class="scan-btn" id="scan-btn">
+              <div class="scan-btn-glow"></div>
+              <div class="scan-btn-inner">
+                <svg class="rocket-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g class="rocket-body">
+                    <ellipse cx="40" cy="28" rx="10" ry="18" fill="url(#rocketBody)"/>
+                    <path d="M30 38 C22 42 20 52 22 60 L30 55 L30 38Z" fill="url(#rocketWingL)"/>
+                    <path d="M50 38 C58 42 60 52 58 60 L50 55 L50 38Z" fill="url(#rocketWingR)"/>
+                    <ellipse cx="40" cy="18" rx="7" ry="9" fill="url(#rocketNose)"/>
+                    <ellipse cx="40" cy="54" rx="6" ry="4" fill="#1a1a2e"/>
+                    <circle cx="40" cy="30" r="5" fill="url(#porthole)" stroke="rgba(100,220,255,0.6)" stroke-width="1"/>
+                  </g>
+                  <g class="rocket-flame" id="rocket-flame">
+                    <ellipse cx="40" cy="60" rx="5" ry="8" fill="url(#flame1)" opacity="0.9"/>
+                    <ellipse cx="40" cy="63" rx="3" ry="6" fill="url(#flame2)" opacity="0.8"/>
+                    <ellipse cx="40" cy="65" rx="2" ry="4" fill="white" opacity="0.6"/>
+                  </g>
+                  <defs>
+                    <linearGradient id="rocketBody" x1="40" y1="10" x2="40" y2="56" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#e8f4ff"/>
+                      <stop offset="100%" stop-color="#6ab4d8"/>
+                    </linearGradient>
+                    <linearGradient id="rocketWingL" x1="20" y1="38" x2="30" y2="60" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#1dd3f8"/>
+                      <stop offset="100%" stop-color="#0a5a8a"/>
+                    </linearGradient>
+                    <linearGradient id="rocketWingR" x1="60" y1="38" x2="50" y2="60" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#1dd3f8"/>
+                      <stop offset="100%" stop-color="#0a5a8a"/>
+                    </linearGradient>
+                    <linearGradient id="rocketNose" x1="40" y1="9" x2="40" y2="27" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#ffffff"/>
+                      <stop offset="100%" stop-color="#a8d8f0"/>
+                    </linearGradient>
+                    <radialGradient id="porthole" cx="40%" cy="35%">
+                      <stop offset="0%" stop-color="#80e8ff"/>
+                      <stop offset="100%" stop-color="#1a8bbf"/>
+                    </radialGradient>
+                    <linearGradient id="flame1" x1="40" y1="52" x2="40" y2="70" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#ff6b1a"/>
+                      <stop offset="100%" stop-color="#ff2200" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="flame2" x1="40" y1="57" x2="40" y2="72" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#ffcc00"/>
+                      <stop offset="100%" stop-color="#ff6600" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <span class="scan-label">SCAN NOW</span>
+              </div>
+            </button>
+          </div>
+
+          <div class="scan-progress-wrap" id="scan-progress-wrap" style="display:none">
+            <div class="scan-status-text" id="scan-status-text">Initializing scan...</div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progress-fill"></div>
+              <div class="progress-glow" id="progress-glow"></div>
+            </div>
+            <div class="progress-nums">
+              <span id="prog-pct">0%</span>
+              <span id="prog-files">0 / 0 files</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="file-input" multiple hidden/>
+          <div class="upload-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <rect x="6" y="14" width="36" height="28" rx="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 6V28M17 13L24 6L31 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="upload-text">Drop files here or <span class="upload-link" id="upload-link">browse</span> to scan</p>
+          <p class="upload-sub">Real check: hashes, file type and suspicious code patterns (max 10 MB)</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-results">
+        <div class="results-header">
+          <h2 class="section-title">Scan Results</h2>
+          <div class="results-summary" id="results-summary" style="display:none">
+            <span class="badge badge-clean" id="badge-clean">0 Clean</span>
+            <span class="badge badge-warn" id="badge-warn">0 Warnings</span>
+            <span class="badge badge-threat" id="badge-threat">0 Threats</span>
+          </div>
+        </div>
+        <div class="results-list" id="results-list">
+          <div class="empty-state">
+            <div class="empty-icon">🛡️</div>
+            <p>Run a scan to see results here</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-history">
+        <h2 class="section-title">Scan History</h2>
+        <div class="history-list" id="history-list">
+          <div class="empty-state">
+            <div class="empty-icon">📋</div>
+            <p>No scan history yet</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-threatlog">
+        <h2 class="section-title">Threat Log</h2>
+        <div class="threatlog-list" id="threatlog-list">
+          <div class="empty-state">
+            <div class="empty-icon">🔒</div>
+            <p>No threats logged yet</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

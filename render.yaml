@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: novascan
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # 1 worker: scan sessions are kept in memory, so workers must share one process
+    startCommand: gunicorn app:app --workers 1 --threads 4 --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
